@@ -4,41 +4,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.joshua.wayaknacatalog.ui.theme.WayaknaCatalogTheme
+import com.joshua.wayaknacatalog.data.FavoritesStore
 import com.joshua.wayaknacatalog.nav.AppNav
+import com.joshua.wayaknacatalog.ui.theme.WayaknaCatalogTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FavoritesStore.init(applicationContext)
         enableEdgeToEdge()
         setContent {
-            MaterialTheme {
+            WayaknaCatalogTheme {
                 AppNav()
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    WayaknaCatalogTheme {
-        Greeting("Android")
     }
 }

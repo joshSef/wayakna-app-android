@@ -9,7 +9,7 @@ para presentar paquetes de consultoría en Odoo y Correobox.
 - Detalle de paquete
 - Pantalla de contacto
 - Navegación entre pantallas
-- Botón de contacto por WhatsApp (iteración)
+- Botón de contacto por WhatsApp
 
 ## Arquitectura
 - Kotlin
@@ -18,4 +18,4 @@ para presentar paquetes de consultoría en Odoo y Correobox.
 - Patrón simple Repository
 
 ## Estado
-MVP académico - Primera iteración
+Aplicación Android en evolución para catálogo comercial de servicios
