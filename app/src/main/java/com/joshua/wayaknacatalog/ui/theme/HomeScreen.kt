@@ -19,7 +19,9 @@ fun HomeScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.Start
     ) {
-        Text("WAYAKNA", style = MaterialTheme.typography.headlineLarge)
+        Text(
+            "WAYAKNA S.A. de C.V.",
+            style = MaterialTheme.typography.displaySmall)
         Spacer(Modifier.height(8.dp))
         Text(
             "Consultoría especializada en Odoo ERP y Correobox.",

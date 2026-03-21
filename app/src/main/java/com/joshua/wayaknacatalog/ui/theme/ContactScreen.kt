@@ -4,11 +4,16 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+// import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import android.content.Intent
+import android.net.Uri
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.ui.platform.LocalContext
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -19,7 +24,7 @@ fun ContactScreen(onBack: () -> Unit) {
                 title = { Text("Contacto") },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 }
             )
@@ -35,6 +40,16 @@ fun ContactScreen(onBack: () -> Unit) {
             Text("• WhatsApp (Canal)")
             Spacer(Modifier.height(16.dp))
             Text("Siguiente iteración: botones para abrir WhatsApp/correo con Intent.")
+            val context = LocalContext.current
+
+            Button(onClick = {
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    data = Uri.parse("https://wa.me/529992519748")
+                }
+                context.startActivity(intent)
+            }) {
+                Text("Contactar por WhatsApp")
+            }
         }
     }
 }
