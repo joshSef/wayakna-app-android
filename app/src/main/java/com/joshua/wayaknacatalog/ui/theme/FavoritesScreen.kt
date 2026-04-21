@@ -31,6 +31,7 @@ import com.joshua.wayaknacatalog.data.FavoritesStore
 @Composable
 fun FavoritesScreen(
     onBack: () -> Unit,
+    onOpenQuote: () -> Unit,
     onOpenPackage: (String) -> Unit
 ) {
     val favorites = FavoritesStore.favoritePackages()
@@ -43,6 +44,11 @@ fun FavoritesScreen(
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Regresar")
+                    }
+                },
+                actions = {
+                    androidx.compose.material3.TextButton(onClick = onOpenQuote) {
+                        Text("Cotizador")
                     }
                 }
             )

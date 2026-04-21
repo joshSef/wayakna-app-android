@@ -34,17 +34,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.joshua.wayaknacatalog.data.FavoritesStore
 import com.joshua.wayaknacatalog.data.PackageRepository
+import com.joshua.wayaknacatalog.data.QuoteStore
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PackageDetailScreen(
     packageId: String,
     onBack: () -> Unit,
+    onOpenQuote: () -> Unit,
     onContact: () -> Unit
 ) {
     val pkg = PackageRepository.findById(packageId)
     val isOdooPackage = pkg?.category == "Odoo Wayakna"
     val favorite = pkg?.let { FavoritesStore.isFavorite(it.id) } == true
+    val quoted = pkg?.let { QuoteStore.contains(it.id) } == true
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
@@ -54,6 +57,11 @@ fun PackageDetailScreen(
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Regresar")
+                    }
+                },
+                actions = {
+                    TextButton(onClick = onOpenQuote) {
+                        Text("Cotizador")
                     }
                 }
             )
@@ -215,6 +223,15 @@ fun PackageDetailScreen(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(if (favorite) "Quitar de guardados" else "Guardar paquete")
+                }
+            }
+
+            item {
+                TextButton(
+                    onClick = { QuoteStore.toggle(pkg.id) },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(if (quoted) "Quitar del cotizador" else "Agregar al cotizador")
                 }
             }
 

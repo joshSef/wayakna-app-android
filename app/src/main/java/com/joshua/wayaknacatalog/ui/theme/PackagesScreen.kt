@@ -41,12 +41,14 @@ import androidx.compose.ui.unit.dp
 import com.joshua.wayaknacatalog.data.ConsultingPackage
 import com.joshua.wayaknacatalog.data.FavoritesStore
 import com.joshua.wayaknacatalog.data.PackageRepository
+import com.joshua.wayaknacatalog.data.QuoteStore
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PackagesScreen(
     onBack: () -> Unit,
     onOpenFavorites: () -> Unit,
+    onOpenQuote: () -> Unit,
     onOpenPackage: (String) -> Unit
 ) {
     val packages = PackageRepository.getAll()
@@ -67,6 +69,9 @@ fun PackagesScreen(
                 actions = {
                     TextButton(onClick = onOpenFavorites) {
                         Text("Guardados")
+                    }
+                    TextButton(onClick = onOpenQuote) {
+                        Text("Cotizador")
                     }
                 }
             )
@@ -130,6 +135,7 @@ fun PackageCard(
     onClick: () -> Unit
 ) {
     val favorite = FavoritesStore.isFavorite(packageItem.id)
+    val quoted = QuoteStore.contains(packageItem.id)
 
     Card(
         modifier = Modifier
@@ -189,6 +195,12 @@ fun PackageCard(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(if (favorite) "Quitar de guardados" else "Guardar paquete")
+            }
+            TextButton(
+                onClick = { QuoteStore.toggle(packageItem.id) },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(if (quoted) "Quitar del cotizador" else "Agregar al cotizador")
             }
         }
     }

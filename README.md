@@ -16,6 +16,7 @@ para presentar paquetes de consultoría en Odoo y Correobox.
 - Jetpack Compose
 - Navigation Compose
 - Patrón simple Repository
+- Gradle Wrapper 8.7
 
 ## Estado
 Aplicación Android en evolución para catálogo comercial de servicios

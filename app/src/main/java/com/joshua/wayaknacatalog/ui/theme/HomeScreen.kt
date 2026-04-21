@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 fun HomeScreen(
     onViewPackages: () -> Unit,
     onViewFavorites: () -> Unit,
+    onViewQuote: () -> Unit,
     onContact: () -> Unit
 ) {
     val uriHandler = LocalUriHandler.current
@@ -48,6 +49,7 @@ fun HomeScreen(
             HeroSection(
                 onViewPackages = onViewPackages,
                 onViewFavorites = onViewFavorites,
+                onViewQuote = onViewQuote,
                 onContact = onContact
             )
             ServicePreviewSection()
@@ -102,6 +104,7 @@ private fun HeaderBar() {
 private fun HeroSection(
     onViewPackages: () -> Unit,
     onViewFavorites: () -> Unit,
+    onViewQuote: () -> Unit,
     onContact: () -> Unit
 ) {
     Card(
@@ -134,6 +137,9 @@ private fun HeroSection(
                         OutlinedButton(onClick = onViewFavorites, modifier = Modifier.fillMaxWidth()) {
                             Text("Guardados")
                         }
+                        OutlinedButton(onClick = onViewQuote, modifier = Modifier.fillMaxWidth()) {
+                            Text("Cotizador")
+                        }
                         OutlinedButton(onClick = onContact, modifier = Modifier.fillMaxWidth()) {
                             Text("Contactanos")
                         }
@@ -145,6 +151,9 @@ private fun HeroSection(
                         }
                         OutlinedButton(onClick = onViewFavorites) {
                             Text("Guardados")
+                        }
+                        OutlinedButton(onClick = onViewQuote) {
+                            Text("Cotizador")
                         }
                         OutlinedButton(onClick = onContact) {
                             Text("Contactanos")
